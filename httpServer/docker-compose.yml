@@ -1,0 +1,28 @@
+services:
+  checker:
+    build:
+      context: ./checker
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    networks:
+      - internal
+    restart: always
+  node:
+    build:
+      context: ./node
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - internal
+  python:
+    build:
+      context: ./python
+      dockerfile: Dockerfile
+    restart: always
+    networks:
+      - internal
+
+networks:
+  internal:
+    driver: bridge
